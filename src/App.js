@@ -9,6 +9,7 @@ import 'react-bootstrap-typeahead/css/Typeahead.css';
 import api from './api';
 import UserSelectionsView from './Views/UserSelectionsView';
 import RetailerProfitView from './Views/RetailerProfitView';
+import BreakdownView from './Views/BreakdownView';
 
 class App extends Component {
   render() {
@@ -34,6 +35,9 @@ class App extends Component {
         </div>
         <div>
          <RetailerProfitView />
+        </div>
+        <div>
+         <BreakdownView />
         </div>
       </div>
     );

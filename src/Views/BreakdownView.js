@@ -9,8 +9,36 @@ import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'react-bootstrap-typeahead/css/Typeahead.css';
 
 
+function DailyBreakdown(props) {
+  return (
+    <div>
+    <h4>Daily Charges</h4>
+    <Table responsive>
+      <tbody>
+        <tr>
+          <td>You Pay</td>
+          <td>$360</td>
+        </tr>
+        <tr>
+          <td>Power Lines</td>
+          <td>$80</td>
+        </tr>
+        <tr>
+          <td>Meter Cost</td>
+          <td>$80</td>
+        </tr>
+        <tr>
+          <td>Retailer gets</td>
+          <td>$160</td>
+        </tr>
+      </tbody>
+    </Table>
+    </div>
+  );
+}
 
-class PriceChart extends React.Component {
+
+class BreakdownChart extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,12 +60,14 @@ class PriceChart extends React.Component {
 
   render() {
     return (
+      <div>
+        <h4>Usage charges</h4>
         <VictoryChart
           theme={VictoryTheme.material}
           scale={{x: "time", y: "log"}}
           height={200}
         >
-          <VictoryLine
+          <VictoryArea
             style={{
               data: { stroke: "#c43a31" },
               parent: { border: "1px solid #ccc"}
@@ -52,67 +82,64 @@ class PriceChart extends React.Component {
 
           />
         </VictoryChart>
+      </div>
     );
   }
 }
 
-function PriceCalcs(props) {
+function TotalBreakdown(props) {
   return (
     <div>
-      <Grid
-      fluid={true}
-      >
-        <Row>
-          <Col md={8}>
-            Your retailer charged you
-          </Col>
-          <Col md={4}>
-            $100
-          </Col>
-        </Row>
-        <Row>
-          <Col md={8}>
-            Then they paid
-          </Col>
-          <Col md={4}>
-            $30
-          </Col>
-        </Row>
-        <Row>
-          <Col md={8}>
-            So you got screwed by
-          </Col>
-          <Col md={4}>
-            $70
-          </Col>
-        </Row>
-        <Row>
-          <Col md={8}>
-            and you screwed the environment by
-          </Col>
-          <Col md={4}>
-            50 tonnes of CO2
-          </Col>
-        </Row>
-      </Grid>
+    <h4>Total Charges</h4>
+    <Table responsive>
+      <tbody>
+        <tr>
+          <td>You Pay</td>
+          <td>$1400</td>
+        </tr>
+        <tr>
+          <td>Power Lines</td>
+          <td>$320</td>
+        </tr>
+        <tr>
+          <td>Meter Cost</td>
+          <td>$80</td>
+        </tr>
+        <tr>
+          <td>Wholesale costs</td>
+          <td>$400</td>
+        </tr>
+        <tr>
+          <td>Environmental costs</td>
+          <td>$100</td>
+        </tr>
+        <tr>
+          <td>Retailer gets</td>
+          <td>$500</td>
+        </tr>
+      </tbody>
+    </Table>
     </div>
   );
 }
 
 
 
-export default class RetailerProfitView extends Component {
+export default class BreakdownView extends Component {
   render() {
     return (
       <div>
         <Grid>
-        <h2>How much did your retailer screw you?</h2>
+        <h2>Breakdown</h2>
           <Row>
-            <Col md={8}>
-              <PriceChart />
+            <Col md={3}>
+              <DailyBreakdown />
             </Col>
-            <Col md={4}>
-              <PriceCalcs />
+            <Col md={6}>
+              <BreakdownChart />
+            </Col>
+            <Col md={3}>
+              <TotalBreakdown />
             </Col>
           </Row>
         </Grid>
